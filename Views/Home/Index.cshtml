@@ -1,8 +1,26 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model NuevoHogar.Models.Usuario
+
+@{
+    ViewData["Title"] = "Página de inicio";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Bienvenido</h1>
+    <p> ¡Ingresa a nuestra comunidad para seguir protegiendo a los animalitos!</p>
+</div>
+<div class="form-vertical">
+    <div class="form-inline">
+        <div class="container">
+            <div class="mx-auto form-group">
+                <div asp-validation-summary="ModelOnly">
+
+                </div>
+                <div asp-validation-for="NombreUsuario" class="text-danger">
+                        
+                </div>
+                <input type="text" asp-for="NombreUsuario" class="form-control" placeholder="Ingresa usuario" required>
+                <input type="submit" class="btn btn-primary b-none ml-2 border-0" value="Iniciar sesión" asp-action="">
+            </div>
+        </div>
+    </div>
 </div>
