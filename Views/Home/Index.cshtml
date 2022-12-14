@@ -11,17 +11,28 @@
 <div class="form-vertical">
     <div class="form-inline">
         <div class="container">
-            <div class="mx-auto form-group">
-                <div asp-validation-summary="ModelOnly">
+            <form class="form-inline" asp-action="IniciarSesion" asp-controller="Home">
+                <div class="mx-auto form-group">
+                    <div asp-validation-summary="ModelOnly">
 
+                    </div>
+                    <div asp-validation-for="NombreUsuario" class="text-danger">
+                            
+                    </div>
+                    <input type="text" asp-for="NombreUsuario" class="form-control" placeholder="Ingresa usuario" required>
+                    <div asp-validation-summary="ModelOnly">
+
+                    </div>
+                    <div asp-validation-for="Contrasenia" class="text-danger">
+                            
+                    </div>
+                    <input type="password" asp-for="Contrasenia" class="form-control" placeholder="Ingresa contraseña" required>
+                    <input type="submit" class="btn btn-primary b-none ml-2 border-0" value="Iniciar sesión">
                 </div>
-                <div asp-validation-for="NombreUsuario" class="text-danger">
-                        
-                </div>
-                <input type="text" asp-for="NombreUsuario" class="form-control" placeholder="Ingresa usuario" required>
-                <input type="password" asp-for="Contrasenia" class="form-control" placeholder="Ingresa contraseña" required>
-                <input type="submit" class="btn btn-primary b-none ml-2 border-0" value="Iniciar sesión" asp-action="">
-            </div>
+            </form>
         </div>
     </div>
+</div>
+<div>
+    <div>¿No tienes cuenta? <a href="@Url.Action("RegistrarCuenta", "Acceso")" class="link-primary">Registrate</a></div>
 </div>
