@@ -6,7 +6,7 @@
 
 <div class="container-fluid">
 
-    <form class="form-inline" asp-action="Registrar" asp-controller="Acceso">
+    <form class="form-inline" asp-action="RegistrarCuentaBtn" asp-controller="Acceso">
         <div class="row">
             <div class="col-12">
 
@@ -97,7 +97,7 @@
                                     
                             </div>
                             <label for="txtTelefono">Telefono:</label>
-                            <input type="text" asp-for="NumeroTelefono" class="form-control" id="txtTelefono" placeholder="Ingresa tu telefono" required>
+                            <input type="tel" asp-for="NumeroTelefono" class="form-control" id="txtTelefono" placeholder="Ingresa tu telefono" required>
                         </div>
                     </div>
 
@@ -132,7 +132,7 @@
                                 <input type="submit" class="btn btn-primary b-none ml-2 border-0" value="Registrar">
                             </div>
                             <div class="col-6">
-                                <input type="button" value="Cancelar" onclick="location.href='@Url.Action("Index","Home")';"/>
+                                <input type="button" value="Cancelar" onclick="location.href='@Url.Action("Index", "Home")';"/>
                             </div>
                         </div>
 

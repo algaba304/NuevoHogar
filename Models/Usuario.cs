@@ -11,7 +11,7 @@ namespace NuevoHogar.Models{
         public string? FechaNacimiento { get; set; }
         public string? Biografia { get; set; }
         public string? FotoPerfilUsuario { get; set; }
-        public string? IdRol { get; set; }
+        public Rol? Rol { get; set; }
         public string? NombreUsuario { get; set; }
         public int ContadorReportes { get; set; }
         public string? EstadoUsuario { get; set; }
