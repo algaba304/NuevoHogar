@@ -1,6 +1,8 @@
-namespace NuevoHogar.Models{
+using NuevoHogar.Models;
 
-    public class Usuario{
+namespace NuevoHogar.ModeloAuxiliar{
+
+    public class UsuarioAuxiliar{
 
         public string? IdUsuario { get; set; }
         public string? CorreoElectronico { get; set; }
@@ -8,13 +10,15 @@ namespace NuevoHogar.Models{
         public string? NumeroTelefono { get; set; }
         public string? Direccion { get; set; }
         public string? Contrasenia { get; set; }
-        public string? FechaNacimiento { get; set; }
+        public DateOnly FechaNacimiento { get; set; }
         public string? Biografia { get; set; }
         public string? FotoPerfilUsuario { get; set; }
-        public Rol? Rol { get; set; }
+        public string? IdRol { get; set; }
         public string? NombreUsuario { get; set; }
         public int ContadorReportes { get; set; }
         public string? EstadoUsuario { get; set; }
+        public List<Rol>? Roles { get; set; }
+        public string? RolSeleccionado { get; set; }
 
     }
 

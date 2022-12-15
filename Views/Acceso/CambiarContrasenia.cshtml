@@ -1,0 +1,54 @@
+@{
+    ViewData["title"] = "Cambio de contraseña";
+}
+
+<div class="container-fluid">
+
+    <form method="get" asp-action="CambiarContraseniaBtn" asp-controller="Acceso" class="form-inline">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="text-center">
+                            <h1 class="display-4">Cambio de contraseña</h1>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="text-center">
+                            <p>Asegurese que la contraseña tenga entre 8 a 16 caracteres con al menos un dígito, una letra mayúscula, una letra minúscula y sin espacios en blanco</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <input type="password" class="form-control" id="contrasenia" name="contrasenia" placeholder="Ingresa la nueva contraseña" required>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <input type="password" class="form-control" id="contraseniaRepetida" name="contraseniaRepetida" placeholder="Ingresa de nuevo la contraseña" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="submit" id="guardar" class="btn btn-primary b-none ml-2 border-0" value="Guardar">
+                            </div>
+                            <div class="col-6">
+                                <input type="button" value="Cancelar" onclick="location.href='@Url.Action("ConsultarCuenta", "Acceso")';"/>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</div>

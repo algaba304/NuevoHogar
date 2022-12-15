@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Homepage";
+}
+
+<div id="sidemenu" class="menu-collapsed">
+    <div id="header">
+        <div id="title"><span>Nuevo Hogar</span></div>
+        <div id="menu-btn">
+            <div class="btn-hamburger"></div>
+            <div class="btn-hamburger"></div>
+            <div class="btn-hamburger"></div>
+        </div>
+    </div>
+    <div id="profile">
+
+        <div id="photo"><img src="" alt=""></div>
+        <div id="name"><span>Ejemplo</span></div>
+        <div id="menu-items">
+
+            <div class="item">
+                <a href="@Url.Action("ConsultarListaUsuariosReportados", "Administracion")">
+                    <div class="icon"><i class="icon ion-md-list"></i></div>
+                    <div class="title"><span>Mi perfil</span></div>
+                </a>
+            </div>
+
+            <div class="item">
+                <a href="@Url.Action("ConsultarListaSolicitudes", "Administracion")">
+                    <div class="icon"><i class="icon ion-md-list"></i></div>
+                    <div class="title"><span>Mi perfil</span></div>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+
+</div>
