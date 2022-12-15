@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Homepage";
+}
+
+<div id="sidemenu" class="menu-collapsed">
+    <div id="header">
+        <div id="title"><span>Nuevo Hogar</span></div>
+        <div id="menu-btn">
+            <div class="btn-hamburger"></div>
+            <div class="btn-hamburger"></div>
+            <div class="btn-hamburger"></div>
+        </div>
+    </div>
+    <div id="profile">
+
+        <div id="photo"><img src="" alt=""></div>
+        <div id="name"><span>Ejemplo</span></div>
+        <div id="menu-items">
+
+            <div class="item">
+                <a href="@Url.Action("ConsultarCuenta", "Acceso")">
+                    <div class="icon"><i class="icon ion-md-contact"></i></div>
+                    <div class="title"><span>Mi perfil</span></div>
+                </a>
+            </div>
+            
+            <div class="item">
+                <a href="#">
+                    <div class="icon"><i class="icon ion-md-chatboxes"></i></div>
+                    <div class="title"><span>Chats</span></div>
+                </a>
+            </div>
+            
+            <div class="item">
+                <a href="#">
+                    <div class="icon"><i class="icon ion-md-people"></i></div>
+                    <div class="title"><span>Comunidad</span></div>
+                </a>
+            </div>
+            
+            <div class="item">
+                <a href="#">
+                    <div class="icon"><i class="icon ion-md-paw"></i></div>
+                    <div class="title"><span>Adopción</span></div>
+                </a>
+            </div>
+            
+            <div class="item">
+                <a href="#">
+                    <div class="icon"><i class="icon ion-md-clipboard"></i></div>
+                    <div class="title"><span>Reporte de maltrato</span></div>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+
+</div>
