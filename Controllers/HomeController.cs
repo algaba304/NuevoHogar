@@ -41,6 +41,12 @@ public class HomeController : Controller
 
     }
 
+    public IActionResult ErrorNoExiste(){
+
+        return View();
+
+    }
+
     public async System.Threading.Tasks.Task<IActionResult> IniciarSesionBtn(UsuarioDTO usuario){
 
         try{
@@ -50,6 +56,12 @@ public class HomeController : Controller
             cliente?.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             var mensaje = await cliente?.GetAsync("api/sesion/?nombreUsuario=" + usuario.NombreUsuario + "&contrasenia=" + usuario.Contrasenia)!;
 
+            if(mensaje.StatusCode == System.Net.HttpStatusCode.NotFound){
+
+                return RedirectToAction("ErrorNoExiste", "Home");
+
+            }
+            
             if(mensaje.IsSuccessStatusCode){
 
                 string usuarioObtenido = mensaje.Content.ReadAsStringAsync().Result;
