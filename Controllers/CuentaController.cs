@@ -233,10 +233,6 @@ public class CuentaController : Controller{
                         Cliente.Usuario!.ListaRedes = listaRedes;
                         return View(listaRedes);
 
-                    }else{
-
-                        return RedirectToAction("ErrorPagina", "Home");
-
                     }
 
                 }else if(mensaje.IsSuccessStatusCode){
@@ -246,11 +242,9 @@ public class CuentaController : Controller{
                     Cliente.Usuario.ListaRedes = listaRedes;
                     return View(listaRedes);
 
-                }else{
-
-                    return RedirectToAction("ErrorPagina", "Home");
-
                 }
+
+                return RedirectToAction("ErrorPagina", "Home");
 
             }
 
@@ -308,10 +302,6 @@ public class CuentaController : Controller{
                         Cliente.Usuario!.ListaDonaciones = listaMetodos;
                         return View(listaMetodos);
 
-                    }else{
-
-                        return RedirectToAction("ErrorPagina", "Home");
-
                     }
 
                 }else if(mensaje.IsSuccessStatusCode){
@@ -321,11 +311,9 @@ public class CuentaController : Controller{
                     Cliente.Usuario.ListaDonaciones = listaMetodos;
                     return View(listaMetodos);
 
-                }else{
-
-                    return RedirectToAction("ErrorPagina", "Home");
-
                 }
+                
+                return RedirectToAction("ErrorPagina", "Home");
 
             }
 
@@ -449,10 +437,7 @@ public class CuentaController : Controller{
                         usuario.ListaDonaciones = Cliente.Usuario.ListaDonaciones;
                         usuario.ListaRedes = Cliente.Usuario.ListaRedes;
                         Cliente.Usuario = usuario;
-
-                    }else{
-
-                        return RedirectToAction("ErrorPagina", "Home");
+                        return RedirectToAction("ConsultarCuenta", "Cuenta");
 
                     }
 
@@ -465,15 +450,11 @@ public class CuentaController : Controller{
                         MensajeResultante? mensajeResultante = JsonConvert.DeserializeObject<MensajeResultante>(noExito);
                         return RedirectToAction("EditarCuenta", "Cuenta");
 
-                    }else{
-
-                        return RedirectToAction("ErrorPagina", "Home");
-
                     }
 
                 }
                 
-                return RedirectToAction("ConsultarCuenta", "Cuenta");
+                return RedirectToAction("ErrorPagina", "Home");
 
             }
 
@@ -557,10 +538,7 @@ public class CuentaController : Controller{
 
                         MensajeResultante? mensajeResultante = JsonConvert.DeserializeObject<MensajeResultante>(exito);
                         Cliente.Usuario.ListaRedes = listaRedes;
-
-                    }else{
-
-                        return RedirectToAction("ErrorPagina", "Home");
+                        return RedirectToAction("ConsultarRedesSociales", "Cuenta");
 
                     }
 
@@ -573,15 +551,11 @@ public class CuentaController : Controller{
                         MensajeResultante? mensajeResultante = JsonConvert.DeserializeObject<MensajeResultante>(noExito);
                         return RedirectToAction("EditarEnlacesRedes", "Cuenta");
 
-                    }else{
-
-                        return RedirectToAction("ErrorPagina", "Home");
-
                     }
 
                 }
 
-                return RedirectToAction("ConsultarRedesSociales", "Cuenta");
+                return RedirectToAction("ErrorPagina", "Home");
 
             }
 
@@ -653,10 +627,7 @@ public class CuentaController : Controller{
 
                         MensajeResultante? mensajeResultante = JsonConvert.DeserializeObject<MensajeResultante>(exito);
                         Cliente.Usuario.ListaDonaciones = listaMetodos;
-
-                    }else{
-
-                        return RedirectToAction("ErrorPagina", "Home");
+                        return RedirectToAction("ConsultarMetodosDonacion", "Cuenta");
 
                     }
 
@@ -669,15 +640,11 @@ public class CuentaController : Controller{
                         MensajeResultante? mensajeResultante = JsonConvert.DeserializeObject<MensajeResultante>(noExito);
                         return RedirectToAction("EditarMetodosDonacion", "Cuenta");
 
-                    }else{
-
-                        return RedirectToAction("ErrorPagina", "Home");
-
                     }
 
                 }
 
-                return RedirectToAction("ConsultarMetodosDonacion", "Cuenta");
+                return RedirectToAction("ErrorPagina", "Home");
 
             }
 
@@ -701,7 +668,7 @@ public class CuentaController : Controller{
 
             }else{
 
-                return RedirectToAction("PaginaEncontrada", "Home");
+                return RedirectToAction("PaginaNoEncontrada", "Home");
 
             }
 
@@ -749,10 +716,7 @@ public class CuentaController : Controller{
 
                         MensajeResultante? mensajeResultante = JsonConvert.DeserializeObject<MensajeResultante>(exito);
                         Cliente.Usuario!.Contrasenia = contrasenia;
-
-                    }else{
-
-                        return RedirectToAction("ErrorPagina", "Home");
+                        return RedirectToAction("ConsultarCuenta", "Cuenta");
 
                     }
 
@@ -765,19 +729,96 @@ public class CuentaController : Controller{
                         MensajeResultante? mensajeResultante = JsonConvert.DeserializeObject<MensajeResultante>(noExito);
                         return RedirectToAction("CambiarContrasenia", "Cuenta");
 
-                    }else{
+                    }
 
-                        return RedirectToAction("ErrorPagina", "Home");
+                }
+
+                return RedirectToAction("ErrorPagina", "Home");
+
+            }
+
+            return RedirectToAction("PaginaNoEncontrada", "Home");
+
+        }catch(Exception ex){
+
+            return RedirectToAction("ErrorPagina", "Home");
+
+        }
+
+    }
+
+    public IActionResult EliminarCuenta(){
+
+        if(Cliente.Usuario!.Rol!.IdRol == idAnimalista || Cliente.Usuario.Rol.IdRol == idRefugio){
+
+            return View();
+
+        }else{
+
+            return RedirectToAction("ErrorPagina", "Home");
+
+        }
+
+    }
+
+    public async System.Threading.Tasks.Task<IActionResult> EliminarCuentaBtn(){
+
+        try{
+
+            if(Cliente.Usuario!.Rol!.IdRol == idAnimalista || Cliente.Usuario!.Rol!.IdRol == idRefugio){
+
+                UsuarioDTO usuario = new UsuarioDTO();
+                usuario.EstadoUsuario = "Eliminado";
+                var cliente = _IhttpClientFactory?.CreateClient("BackEnd");
+                cliente?.DefaultRequestHeaders.Clear();
+                cliente?.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                DefaultContractResolver contractResolver = new DefaultContractResolver{
+
+                    NamingStrategy = new CamelCaseNamingStrategy()
+
+                };
+
+                string json = JsonConvert.SerializeObject(usuario, new JsonSerializerSettings{
+
+                    ContractResolver = contractResolver,
+                    Formatting = Formatting.Indented
+
+                });
+
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage mensaje = await cliente?.PutAsync("api/usuarios/" + Cliente.Usuario.IdUsuario + "/cuentas", data)!;
+
+                if(mensaje.IsSuccessStatusCode){
+
+                    string exito = mensaje.Content.ReadAsStringAsync().Result;
+
+                    if(exito != null){
+
+                        MensajeResultante? mensajeResultante = JsonConvert.DeserializeObject<MensajeResultante>(exito);
+                        Cliente.Usuario = null;
+                        return RedirectToAction("Index", "Home");
+
+                    }
+
+                }else{
+
+                    string noExito = mensaje.Content.ReadAsStringAsync().Result;
+
+                    if(noExito != null){
+
+                        MensajeResultante? mensajeResultante = JsonConvert.DeserializeObject<MensajeResultante>(noExito);
+                        return RedirectToAction("EliminarCuenta", "Cuenta");
 
                     }
 
                 }
 
-                return RedirectToAction("ConsultarCuenta", "Cuenta");
+                return RedirectToAction("PaginaNoEncontrada", "Home");
 
             }
 
-            return RedirectToAction("ConsultarCuenta", "Cuenta");
+            return RedirectToAction("ErrorPagina", "Home");
 
         }catch(Exception ex){
 

@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = "Eliminar perfil";
+}
+
+<div class="container-fluid">
+
+    <form class="form-inline" asp-action="EliminarCuentaBtn" asp-controller="Cuenta">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card-body">
+                    
+                    <div class="row">
+                        <div class="text-center">
+                            <h1 class="display-4">Eliminar cuenta</h1>
+                            <p>¿Deseas eliminar tu cuenta?</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="row">
+
+                            <div class="col-6">
+                                <input type="submit" value="Eliminar" class="btn btn-primary b-none ml-2 border-0" onclick="location.href='@Url.Action("Index", "Home")';"/>
+                            </div>
+
+                            <div class="col-6">
+                                <input type="button" value="Cancelar" onclick="location.href='@Url.Action("ConsultarCuenta", "Cuenta")';"/>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</div>
