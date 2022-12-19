@@ -1,0 +1,148 @@
+@model NuevoHogar.ModeloAuxiliar.UsuarioAuxiliar
+
+@{
+    ViewData["Title"] = "Mi perfil";
+}
+
+<div class="container-fluid">
+
+    <form class="form-inline">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card-body">
+                    
+                    <div class="row">
+                        <div class="text-center">
+                            <h1 class="display-4">Mi perfil</h1>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <div asp-validation-summary="ModelOnly">
+
+                            </div>
+                            <div asp-validation-for="Nombre" class="text-danger">
+                                    
+                            </div>
+                            <label for="txtNombre">Nombre:</label>
+                            <input type="text" asp-for="Nombre" class="form-control" id="txtNombre" readonly>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <div asp-validation-summary="ModelOnly">
+
+                            </div>
+                            <div asp-validation-for="NombreUsuario" class="text-danger">
+                                    
+                            </div>
+                            <label for="txtNombreUsuario">Nombre de usuario:</label>
+                            <input type="text" asp-for="NombreUsuario" class="form-control" id="txtNombreUsuario" readonly>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <div asp-validation-summary="ModelOnly">
+
+                            </div>
+                            <div asp-validation-for="CorreoElectronico" name="val" class="text-danger">
+                                    
+                            </div>
+                            <label for="txtCorreo">Correo electrónico:</label>
+                            <input type="email" asp-for="CorreoElectronico" class="form-control" id="txtCorreo" readonly>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <div asp-validation-summary="ModelOnly">
+
+                            </div>
+                            <div asp-validation-for="Direccion" class="text-danger">
+                                    
+                            </div>
+                            <label for="txtDireccion">Dirección:</label>
+                            <input type="text" asp-for="Direccion" class="form-control" id="txtDireccion" readonly>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <div asp-validation-summary="ModelOnly">
+
+                            </div>
+                            <div asp-validation-for="FechaNacimiento" class="text-danger">
+                                    
+                            </div>
+                            <label for="dpFecha">Fecha de nacimiento:</label>
+                            <input type="date" asp-for="FechaNacimiento" class="form-control" id="dpFecha" readonly>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <div asp-validation-summary="ModelOnly">
+
+                            </div>
+                            <div asp-validation-for="NumeroTelefono" class="text-danger">
+                                    
+                            </div>
+                            <label for="txtTelefono">Telefono:</label>
+                            <input type="text" asp-for="NumeroTelefono" class="form-control" id="txtTelefono" readonly>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <div asp-validation-summary="ModelOnly">
+
+                            </div>
+                            <div asp-validation-for="Biografia" class="text-danger">
+                                    
+                            </div>
+                            <label for="txtBiografia">Biografía:</label>
+                            <textarea type="text" asp-for="Biografia" class="form-control" rows="3" id="txtBiografia" readonly></textarea>
+                        </div>
+                    </div>
+
+                    @if(Model.RolSeleccionado == "Refugio"){
+
+                        <div class="form-group">
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="button" class="btn btn-primary b-none ml-2 border-0" value="Modificar" onclick="location.href='@Url.Action("EditarCuenta", "Cuenta")';"/>
+                                </div>
+
+                                <div class="col-6">
+                                    <input type="button" value="Siguiente" onclick="location.href='@Url.Action("ConsultarRedesSociales", "Cuenta")';"/>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    }
+
+                    <div class="form-group">
+
+                        <div class="row">
+                            <div class="col-4">
+                                <input type="button" value="Regresar" onclick="location.href='@Url.Action("Homepage", "Homepage")';"/>
+                            </div>
+
+                            <div class="col-4">
+                                <input type="button" value="Cambiar contraseña" onclick="location.href='@Url.Action("CambiarContrasenia", "Cuenta")';"/>
+                            </div>
+
+                            <div class="col-4">
+                                <input type="button" value="Eliminar cuenta" onclick="location.href='@Url.Action("EliminarCuenta", "Cuenta")';"/>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</div>

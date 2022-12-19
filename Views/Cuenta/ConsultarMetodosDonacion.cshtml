@@ -1,0 +1,67 @@
+@model List<NuevoHogar.ModeloDTO.EnlaceDonacionDTO>
+
+@{
+    ViewData["Title"] = "Edición de cuenta";
+}
+
+<div class="container-fluid">
+
+    <form class="form-inline" asp-action="EditarMetodosBtn" asp-controller="Cuenta">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+
+                            <fieldset>
+                                <legend>MÉTODOS DE DONACIÓN</legend>
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="@Model[0].Metodo">@Model[0].Metodo:</label>
+                                        <input type="url" class="form-control" name="@Model[0].Metodo" value="@Model[0].Enlace" id="@Model[0].Metodo" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="@Model[1].Metodo">@Model[1].Metodo:</label>
+                                        <input type="url" class="form-control" name="@Model[1].Metodo" value="@Model[1].Enlace" id="@Model[1].Metodo" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="@Model[2].Metodo">@Model[2].Metodo:</label>
+                                        <input type="url" class="form-control" name="@Model[2].Metodo" value="@Model[2].Enlace" id="@Model[2].Metodo" readonly>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                            
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="button" class="btn btn-primary b-none ml-2 border-0" value="Modificar" onclick="location.href='@Url.Action("EditarMetodosDonacion", "Cuenta")';"/>
+                            </div>
+
+                            <div class="col-6">
+                                <input type="button" value="Atras" onclick="location.href='@Url.Action("ConsultarRedesSociales", "Cuenta")';"/>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</div>

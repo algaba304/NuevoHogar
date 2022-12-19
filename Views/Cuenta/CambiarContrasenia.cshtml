@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
 
-    <form method="get" asp-action="CambiarContraseniaBtn" asp-controller="Acceso" class="form-inline">
+    <form method="get" asp-action="CambiarContraseniaBtn" asp-controller="Cuenta" class="form-inline">
         <div class="row">
             <div class="col-12">
 
@@ -39,7 +39,7 @@
                                 <input type="submit" id="guardar" class="btn btn-primary b-none ml-2 border-0" value="Guardar">
                             </div>
                             <div class="col-6">
-                                <input type="button" value="Cancelar" onclick="location.href='@Url.Action("ConsultarCuenta", "Acceso")';"/>
+                                <input type="button" value="Cancelar" onclick="location.href='@Url.Action("ConsultarCuenta", "Cuenta")';"/>
                             </div>
                         </div>
 

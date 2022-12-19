@@ -6,7 +6,7 @@
 
 <div class="container-fluid">
 
-    <form class="form-inline" asp-action="RegistrarCuentaBtn" asp-controller="Acceso">
+    <form class="form-inline" asp-action="RegistrarCuentaBtn" asp-controller="Cuenta">
         <div class="row">
             <div class="col-12">
 
@@ -24,12 +24,11 @@
                                 </div>
                                 
                                 <div class="col-md-8">
-                                    @foreach (var item in Model.Roles!)
-                                    {
+                                    @foreach (var item in Model.Roles!){
                                         if(item.Nombre == "Refugio"){
-                                            <input asp-for="RolSeleccionado" type="radio" value="@item.IdRol" checked/> @item.Nombre
+                                            <input asp-for="RolSeleccionado" type="radio" value="@item.Nombre" checked/> @item.Nombre
                                         }else{
-                                            <input asp-for="RolSeleccionado" type="radio" value="@item.IdRol"/> @item.Nombre
+                                            <input asp-for="RolSeleccionado" type="radio" value="@item.Nombre"/> @item.Nombre
                                         }
                                     }
                                 </div>
