@@ -1,0 +1,92 @@
+@model List<NuevoHogar.ModeloDTO.EnlaceRedSocialDTO>
+
+@{
+    ViewData["Title"] = "Edición de cuenta";
+}
+
+<div class="container-fluid">
+
+    <form class="form-inline">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+
+                            <fieldset>
+                                <legend>REDES SOCIALES</legend>
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="@Model[0].Nombre">@Model[0].Nombre:</label>
+                                        <input type="url" class="form-control" name="@Model[0].Nombre" value="@Model[0].Enlace" id="enlace" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="@Model[1].Nombre">@Model[1].Nombre:</label>
+                                        <input type="url" class="form-control" name="@Model[1].Nombre" value="@Model[1].Enlace" id="enlace" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="@Model[2].Nombre">@Model[2].Nombre:</label>
+                                        <input type="url" class="form-control" name="@Model[2].Nombre" value="@Model[2].Enlace" id="enlace" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="@Model[3].Nombre">@Model[3].Nombre:</label>
+                                        <input type="url" class="form-control" name="@Model[3].Nombre" value="@Model[3].Enlace" id="enlace" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="@Model[4].Nombre">@Model[4].Nombre:</label>
+                                        <input type="url" class="form-control" name="@Model[4].Nombre" value="@Model[4].Enlace" id="enlace" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label for="@Model[5].Nombre">@Model[5].Nombre:</label>
+                                        <input type="url" class="form-control" name="@Model[5].Nombre" value="@Model[5].Enlace" id="enlace" readonly>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="button" class="btn btn-primary b-none ml-2 border-0" value="Modificar" onclick="location.href='@Url.Action("EditarEnlacesRedes", "Cuenta")';"/>
+                            </div>
+
+                            <div class="col-3">
+                                <input type="button" value="Atras" onclick="location.href='@Url.Action("ConsultarCuenta", "Cuenta")';"/>
+                            </div>
+
+                            <div class="col-3">
+                                <input type="button" value="Siguiente" onclick="location.href='@Url.Action("ConsultarMetodosDonacion", "Cuenta")';"/>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</div>

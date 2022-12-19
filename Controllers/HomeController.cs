@@ -1,7 +1,8 @@
 ﻿using System.Diagnostics;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc;
-using NuevoHogar.Models;
+using NuevoHogar.ModeloDTO;
+using NuevoHogar.Utils;
 
 namespace NuevoHogar.Controllers;
 
@@ -34,7 +35,13 @@ public class HomeController : Controller
 
     }
 
-    public async System.Threading.Tasks.Task<IActionResult> IniciarSesionBtn(Usuario usuario){
+    public IActionResult PaginaNoEncontrada(){
+
+        return View();
+
+    }
+
+    public async System.Threading.Tasks.Task<IActionResult> IniciarSesionBtn(UsuarioDTO usuario){
 
         try{
 
@@ -49,7 +56,7 @@ public class HomeController : Controller
 
                 if(usuarioObtenido != null){
 
-                    Usuario? usuarioEncontrado = JsonConvert.DeserializeObject<Usuario>(usuarioObtenido);
+                    UsuarioDTO? usuarioEncontrado = JsonConvert.DeserializeObject<UsuarioDTO>(usuarioObtenido);
                     Cliente.Usuario = usuarioEncontrado;
                     
                 }else{
@@ -64,21 +71,13 @@ public class HomeController : Controller
 
             }
 
-            if(Cliente.Usuario!.Rol!.IdRol == "AD_123_R"){
+            if(Cliente.Usuario!.Rol!.IdRol != null){
 
-                return RedirectToAction("HomepageAdministrador", "Homepage");
-
-            }else if(Cliente.Usuario!.Rol!.IdRol == "AN_123_R"){
-
-                return RedirectToAction("HomepageAnimalista", "Homepage");
-
-            }else if(Cliente.Usuario!.Rol!.IdRol == "RF_123_R"){
-
-                return RedirectToAction("HomepageRefugio", "Homepage");
+                return RedirectToAction("Homepage", "Homepage");
 
             }
 
-            return RedirectToAction("ErrorPagina", "Home");
+            return RedirectToAction("PaginaNoEncontrada", "Home");
 
         }catch(Exception ex){
 
