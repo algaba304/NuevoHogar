@@ -1,4 +1,4 @@
-namespace NuevoHogar.Models;
+namespace NuevoHogar.Utils;
 
 public class ErrorViewModel
 {
