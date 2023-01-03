@@ -1,19 +1,69 @@
 using System.Diagnostics;
-using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
-using NuevoHogar.Models;
+using Newtonsoft.Json;
+using NuevoHogar.ModeloAuxiliar;
+using NuevoHogar.Utils;
 
 namespace NuevoHogar.Controllers;
 
 public class HomepageController : Controller{
 
+    private readonly IHttpClientFactory? _IhttpClientFactory;
+    public HomepageController(IHttpClientFactory httpClientFactory){
+
+        _IhttpClientFactory = httpClientFactory;
+
+    }
+
+    private String idAnimalista = "AN_123_R";
+    private String idRefugio = "RF_123_R";
+    private String idAdministrador = "AD_123_R";
+
+    public IActionResult Homepage(){
+
+        try{
+
+            if(Cliente.Usuario!.Rol!.IdRol == idAnimalista){
+            
+                return RedirectToAction("HomepageAnimalista", "Homepage");
+
+            }else if(Cliente.Usuario!.Rol!.IdRol == idRefugio){
+
+                return RedirectToAction("HomepageRefugio", "Homepage");
+                
+            }else if(Cliente.Usuario!.Rol!.IdRol == idAdministrador){
+
+                return RedirectToAction("HomepageAdministrador", "Homepage");
+
+            }else{
+
+                return RedirectToAction("PaginaNoEncontrada", "Home");
+
+            }
+
+        }catch(Exception ex){
+
+            return RedirectToAction("ErrorPagina", "Home");
+
+        }
+
+    }
+
     public IActionResult HomepageAnimalista(){
 
-        if(Cliente.Usuario!.Rol!.IdRol == "AN_123_R"){
+        try{
 
-            return View();
+            if(Cliente.Usuario!.Rol!.IdRol == idAnimalista){
+            
+                return View();
 
-        }else{
+            }else{
+
+                return RedirectToAction("PaginaNoEncontrada", "Home");
+
+            }
+
+        }catch(Exception ex){
 
             return RedirectToAction("ErrorPagina", "Home");
 
@@ -23,11 +73,19 @@ public class HomepageController : Controller{
 
     public IActionResult HomepageRefugio(){
 
-        if(Cliente.Usuario!.Rol!.IdRol == "RF_123_R"){
+        try{
 
-            return View();
+            if(Cliente.Usuario!.Rol!.IdRol == idRefugio){
 
-        }else{
+                return View();
+
+            }else{
+
+                return RedirectToAction("PaginaNoEncontrada", "Home");
+
+            }
+
+        }catch(Exception ex){
 
             return RedirectToAction("ErrorPagina", "Home");
 
@@ -37,11 +95,19 @@ public class HomepageController : Controller{
 
     public IActionResult HomepageAdministrador(){
 
-        if(Cliente.Usuario!.Rol!.IdRol == "AS_123_R"){
+        try{
 
-            return View();
+            if(Cliente.Usuario!.Rol!.IdRol == idAdministrador){
 
-        }else{
+                return View();
+
+            }else{
+
+                return RedirectToAction("PaginaNoEncontrada", "Home");
+
+            }
+
+        }catch(Exception ex){
 
             return RedirectToAction("ErrorPagina", "Home");
 
