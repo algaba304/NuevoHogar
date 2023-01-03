@@ -1,0 +1,45 @@
+@model NuevoHogar.ModeloDTO.UsuarioDTO
+
+@{
+    ViewData["Title"] = "Mi perfil";
+}
+
+<div class="container-fluid">
+
+    <form class="form-inline" asp-action="GuardarFotoBtn" asp-controller="Cuenta" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card-body">
+
+                    <fieldset>
+                        <legend> Imagen subida </legend>
+                        <label for="Image">Image</label>
+                        <input type="file" name="foto" accept="image/*"/>
+                        <br/>
+                    </fieldset>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <input type="submit" value="Subir foto"/>
+            </div>
+
+            <div class="col-6">
+                <input type="button" value="Cancelar" onclick="location.href='@Url.Action("ConsultarCuenta", "Cuenta")';"/>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<h1>Imagen subida</h1>
+<div style="padding:10px;">
+    
+        <img src="@ViewBag.Foto" width="200px">
+    
+</div>

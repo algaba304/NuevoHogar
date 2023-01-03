@@ -92,7 +92,7 @@ public class HomeController : Controller
             return RedirectToAction("PaginaNoEncontrada", "Home");
 
         }catch(Exception ex){
-
+            Console.WriteLine(ex);
             return RedirectToAction("ErrorPagina", "Home");
 
         }

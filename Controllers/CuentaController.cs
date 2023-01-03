@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Text;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +6,6 @@ using NuevoHogar.ModeloAuxiliar;
 using Newtonsoft.Json.Serialization;
 using NuevoHogar.Utils.Convertidores;
 using NuevoHogar.Utils;
-
 namespace NuevoHogar.Controllers;
 
 public class CuentaController : Controller{
@@ -40,19 +38,14 @@ public class CuentaController : Controller{
 
                     List<RolDTO>? roles = JsonConvert.DeserializeObject<List<RolDTO>>(listaRoles);
                     usuario.Roles = roles;
+                    return View(usuario);
 
-                }else{
-
-                    return RedirectToAction("Index", "Home");
                 }
-
-            }else if(((int)mensaje.StatusCode) == 500){
-
-                return RedirectToAction("ErrorPagina", "Home");
+                
 
             }
-
-            return View(usuario);
+            
+            return RedirectToAction("ErrorPagina", "Home");
 
         }catch(Exception ex){
 
@@ -172,6 +165,7 @@ public class CuentaController : Controller{
                 UsuarioConverter usuarioConverter = new UsuarioConverter();
                 UsuarioAuxiliar usuarioAuxiliar = usuarioConverter.convertirDesdeUsuarioDTO(Cliente.Usuario);
                 usuarioAuxiliar.RolSeleccionado = Cliente.Usuario.Rol.Nombre;
+                
                 return View(usuarioAuxiliar);
 
             }else{
@@ -825,6 +819,99 @@ public class CuentaController : Controller{
             return RedirectToAction("ErrorPagina", "Home");
 
         }
+
+    }
+
+    public async System.Threading.Tasks.Task<IActionResult> SubirPerfil(){
+
+        if(Cliente.Usuario!.Rol!.IdRol == idAnimalista || Cliente.Usuario!.Rol!.IdRol == idRefugio){
+
+            return View();
+
+        }else{
+
+            return RedirectToAction("PaginaNoEncontrada", "Home");
+
+        }
+
+    }
+    
+    public IActionResult Index(IFormFile formFile)
+
+        {
+
+            try
+
+            {
+
+                string fileName = formFile.FileName;
+
+                fileName = Path.GetFileName(fileName);
+
+                string uploadpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images", fileName);
+
+                var stream = new FileStream(uploadpath, FileMode.Create);
+
+                formFile.CopyToAsync(stream);
+
+                ViewBag.Message = "File uploaded successfully.";
+
+            }
+
+            catch
+
+            {
+
+                ViewBag.Message = "Error while uploading the files.";
+
+            } 
+
+            return View();
+
+        }
+
+    public async System.Threading.Tasks.Task<IActionResult> GuardarFotoBtn(IFormFile foto){
+
+        string nombreFoto = foto.FileName;
+        ViewBag.Foto = nombreFoto;
+        nombreFoto = Path.GetFileName(nombreFoto);
+        Console.WriteLine(nombreFoto);
+        /*
+        UsuarioDTO usuario = new UsuarioDTO();
+        var cliente = _IhttpClientFactory?.CreateClient("BackEnd");
+        cliente?.DefaultRequestHeaders.Clear();
+        var stream = File(ruta, "image/png").FileStream;
+        var formData = new MultipartFormDataContent();
+        var contenido = new ByteArrayContent(new StreamContent(stream).ReadAsByteArrayAsync().Result);
+        contenido.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("image/png");
+
+        contenido.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment"){
+
+            FileName = "",
+            Name = "foo",
+
+        };
+
+        formData.Add(contenido);
+        //cliente?.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/multiform-data"));
+
+        DefaultContractResolver contractResolver = new DefaultContractResolver{
+
+            NamingStrategy = new CamelCaseNamingStrategy()
+
+        };
+
+        string json = JsonConvert.SerializeObject(usuario, new JsonSerializerSettings{
+
+            ContractResolver = contractResolver,
+            Formatting = Formatting.Indented
+
+        });
+        Console.WriteLine(json);
+        var data = new StringContent(json, Encoding.UTF8, "application/json");*/
+        //HttpResponseMessage mensaje = await cliente?.PutAsync("api/usuarios/" + Cliente.Usuario!.IdUsuario + "/pefiles", data)!;
+
+        return RedirectToAction("ConsultarCuenta", "Cuenta");
 
     }
 
