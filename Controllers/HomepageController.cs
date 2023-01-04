@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using NuevoHogar.ModeloAuxiliar;
 using NuevoHogar.Utils;
+using NuevoHogar.ModeloDTO;
+using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace NuevoHogar.Controllers;
 
@@ -18,6 +22,11 @@ public class HomepageController : Controller{
     private String idAnimalista = "AN_123_R";
     private String idRefugio = "RF_123_R";
     private String idAdministrador = "AD_123_R";
+
+    private readonly IHttpClientFactory? _IhttpClientFactory;
+    public HomepageController(IHttpClientFactory httpClientFactory){
+        _IhttpClientFactory = httpClientFactory;
+    }
 
     public IActionResult Homepage(){
 
@@ -71,13 +80,25 @@ public class HomepageController : Controller{
         
     }
 
-    public IActionResult HomepageRefugio(){
-
+    public async System.Threading.Tasks.Task<IActionResult> HomepageRefugio(){
         try{
-
             if(Cliente.Usuario!.Rol!.IdRol == idRefugio){
+                List<Reporte2DTO> listaReportes = new List<Reporte2DTO>();
+           
+                var cliente = _IhttpClientFactory?.CreateClient("BackEnd");
+                cliente?.DefaultRequestHeaders.Clear();
+                cliente?.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                var mensaje = await cliente?.GetAsync("api/reportes/lastReports/20")!;
 
-                return View();
+                System.Console.WriteLine(mensaje.ToString());
+
+                if(mensaje.IsSuccessStatusCode){
+                    string listaStrings = mensaje.Content.ReadAsStringAsync().Result;
+                    listaReportes = JsonConvert.DeserializeObject<List<Reporte2DTO>>(listaStrings);
+                }
+
+                return View(listaReportes);
+
 
             }else{
 

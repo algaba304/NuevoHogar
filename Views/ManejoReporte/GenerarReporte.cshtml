@@ -1,0 +1,37 @@
+@model NuevoHogar.ModeloDTO.ReporteDTO
+
+@{
+    ViewData["Title"] = "Genera tu Reporte";
+}
+
+<center><h1>Formulario Reporte</h1></center>
+<center><h4>Llena el formulario para crear tu reporte</h4></center>
+
+<div class="form-vertical">
+    <div class="form-inline">
+        <div class="container">
+            <form class="form-inline" asp-action="GenerarReporteBtn" asp-controller="ManejoReporte">
+                <div class="mx-auto form-group">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <p>Ubicacion</p>
+                    <div asp-validation-for="ubicacion" class="text-danger"></div>
+                    <input type="text" asp-for="ubicacion" class="form-control" placeholder="Ingresa la ubicacion" required>
+                    
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <p>Descripcion</p>
+                    <div asp-validation-for="descripcion" class="text-danger"></div>
+                    <input type="text" asp-for="descripcion" class="form-control" placeholder="Ingresa una descripcion" required>
+                    
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <p>Fecha</p>
+                    <div asp-validation-for="fecha" class="text-danger"></div>
+                    <input type="date" asp-for="fecha" class="form-control" id="dpFecha" placeholder="Ingresa la fecha del avistamiento" required>
+                    
+                    <p></p>
+                    <input type="submit" class="btn btn-primary b-none ml-2 border-0" value="Generar Reporte">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
