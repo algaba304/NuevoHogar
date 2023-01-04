@@ -20,6 +20,17 @@
 
                     <div class="row">
                         <div class="form-group col-md-6">
+                            <div style="padding:10px;">
+                                    <img src="~/wwwroot/imagenes/perfiles/perfilPorDefecto.png" height="200px" width="00px"/>
+
+                            </div>
+                            
+                            <input type="button" value="Editar foto" onclick="location.href='@Url.Action("SubirPerfil", "Cuenta")';"/>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
                             <div asp-validation-summary="ModelOnly">
 
                             </div>
@@ -119,6 +130,15 @@
 
                         </div>
 
+                    }else{
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-12">
+                                    <input type="button" class="btn btn-primary b-none ml-2 border-0" value="Modificar" onclick="location.href='@Url.Action("EditarCuenta", "Cuenta")';"/>
+                                </div>
+                            </div>
+                        </div>
                     }
 
                     <div class="form-group">

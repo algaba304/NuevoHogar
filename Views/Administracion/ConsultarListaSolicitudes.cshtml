@@ -1,0 +1,88 @@
+@model List<NuevoHogar.ModeloDTO.UsuarioDTO>
+
+@{
+    ViewData["Title"] = "Homepage";
+}
+
+<div id="sidemenu" class="menu-collapsed">
+    <div id="header">
+        <div id="title"><span>Nuevo Hogar</span></div>
+        <div id="menu-btn">
+            <div class="btn-hamburger"></div>
+            <div class="btn-hamburger"></div>
+            <div class="btn-hamburger"></div>
+        </div>
+    </div>
+    <div id="profile">
+
+        <div id="photo"><img src="" alt=""></div>
+        <div id="name"><span>Ejemplo</span></div>
+        <div id="menu-items">
+
+            <div class="item">
+                <a href="@Url.Action("HomepageAdministrador", "Homepage")"/>
+                    <div class="icon"><i class="icon ion-md-list"></i></div>
+                    <div class="title"><span>Lista de usuarios reportados</span></div>
+                </a>
+            </div>
+            
+            <div class="item">
+                <a href="@Url.Action("ConsultarListaSolicitudes", "Administracion")"/>
+                    <div class="icon"><i class="icon ion-md-list"></i></div>
+                    <div class="title"><span>Lista de solicitudes de refugios</span></div>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+
+<table id="tablaSolicitudes" class="display">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Nombre);
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Direccion);
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].CorreoElectronico);
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].FechaNacimiento);
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].NumeroTelefono);
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre);
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Direccion);
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CorreoElectronico);
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaNacimiento);
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroTelefono);
+                </td>
+
+                <td>
+                    <a asp-controller="Administracion" asp-action="AceptarSolicitud" asp-route-idUsuario="@item.IdUsuario">Aceptar</a> | 
+                    <a asp-controller="Administracion" asp-action="CancelarSolicitud" asp-route-idUsuario="@item.IdUsuario">Cancelar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

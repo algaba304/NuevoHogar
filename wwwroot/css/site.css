@@ -205,3 +205,14 @@ body{
 .mostrar {
   display: block;
 }
+
+fieldset {
+  margin: 8px;
+  border: 1px solid rgb(25, 17, 173);
+  padding: 8px;    
+  border-radius: 4px;
+}
+
+legend {
+  padding: 2px;    
+}
