@@ -1,0 +1,34 @@
+@model List<NuevoHogar.ModeloDTO.Reporte2DTO>
+
+@{
+    ViewData["Title"] = "Lista de Reportes";
+}
+
+<center><h1>Reportes de la Comunidad</h1></center>
+
+<div class="form-group">
+    <p></p>
+    <input type="button" value="Mostrar mis Reportes" onclick="location.href='@Url.Action("ListaReportesUsuario", "ManejoReporte")';"/>
+    <p></p>
+
+    <table class= "table table-bordered">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Ubicacion</th>
+                <th>Descripcion</th>
+                <th>Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var reporte in Model){
+                <tr>
+                    <td>@reporte.fecha</td>
+                    <td>@reporte.ubicacion</td>
+                    <td>@reporte.descripcion</td>
+                    <td>@reporte.nombreUsuario</td>
+                </tr>
+            }
+        </tbody>
+    </table>    
+ </div>
